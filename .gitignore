@@ -25,3 +25,6 @@
 *.log
 *.sql
 *.sqlite
+
+#remove directory
+**/tf

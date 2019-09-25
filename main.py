@@ -1,7 +1,7 @@
-
 from TFlearn import learnFromData
 from TFtest import productionModel
 from tensorflow import keras
+import tensorflow as tf
 
 production = False
 
@@ -18,9 +18,21 @@ def testModel():
     predictedValue = productionModel()
     print("the image is: "+ predictedValue.testFromSaveModel(test_images))
 
-if __name__ == "__main__":
+def choice():
     if production:
         print("This is A production Version!!!")
         testModel()
-    else:    
-      trainingModel()
+    else:
+        print("This is A Training !!!")
+        trainingModel()
+
+if __name__ == "__main__":
+    if tf.test.is_gpu_available() :
+        print("------------- Using GPU !!! -------------")
+        with tf.device('/device:XLA_GPU:0'):
+            choice()
+    else:
+        print("------------- Using CPU !!! -------------")
+        choice()
+
+
