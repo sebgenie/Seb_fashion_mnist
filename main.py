@@ -5,12 +5,13 @@ import tensorflow as tf
 
 production = False
 log_dir='logs'
+learning_rate = 0.001
 
 #To stat tensorbord through command line, use:
 #tensorboard --logdir logs/fit
 
 def trainingModel():
-    training = learnFromData(log_dir,convFlag=True) #use convolution for the training
+    training = learnFromData(learning_rate,log_dir,convFlag=True) #use convolution for the training
     training.learnFromDataTF()
 
 def testModel():

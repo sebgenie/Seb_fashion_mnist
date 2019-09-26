@@ -13,11 +13,27 @@ import matplotlib.pyplot as plt
 class learnFromData:
 
 
-    def __init__(self,log_dir,convFlag = True):
+    def __init__(self,learning_rate,log_dir,convFlag = True):
 
         # if you want to you convolution
         self.convFlag = convFlag
         self.log_dir = log_dir
+        self.learning_rate = learning_rate
+
+    def learningRate(self,epoch):
+        """
+        #will be used if we specify big epochs, specially for big dataset
+        """
+
+        if epoch == 3:
+            self.learning_rate = self.learning_rate / 10
+        if epoch == 20:
+            self.learning_rate = self.learning_rate / 10
+        if epoch == 50:
+            self.learning_rate = self.learning_rate / 10
+
+        tf.summary.scalar('learning rate',data=self.learning_rate,step=epoch)
+        return self.learning_rate
         
     def learnFromDataTF(self):
 
@@ -60,11 +76,14 @@ class learnFromData:
             model = modelConvTF(train_images,train_labels,test_images,test_labels)
         else:
             model = modelTF(train_images,train_labels,test_images,test_labels)
+
+        #learning rate call back
+        learningRateCallback = keras.callbacks.LearningRateScheduler(self.learningRate)
         #set the tensorboard callback
         self.log_dir = self.log_dir+"/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        tensorboardCallback = tf.keras.callbacks.TensorBoard(log_dir=self.log_dir, histogram_freq=1)
+        tensorboardCallback = keras.callbacks.TensorBoard(log_dir=self.log_dir, histogram_freq=1)
         # training is done here
-        model.fitModel(tensorboardCallback,numEpochs=7)
+        model.fitModel(learningRateCallback,tensorboardCallback,numEpochs=7)
 
         (test_loss, test_acc) = model.evaluateModel()
         predictions = model.preditionOfModel()

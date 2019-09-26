@@ -46,7 +46,7 @@ class modelConvTF :
             ]
         )
     
-    def fitModel(self, tensorboardCallback,numEpochs=5):
+    def fitModel(self, learningRateCallback, tensorboardCallback,numEpochs=5):
         #build the model
         self.model.compile(optimizer='adam',
         loss='sparse_categorical_crossentropy',
@@ -55,7 +55,8 @@ class modelConvTF :
         #self.model.fit(self.train_images,self.train_labels,epochs=numEpochs)
         #use tensorboardCallback
         self.model.fit(self.train_images,self.train_labels,epochs=numEpochs, validation_data=(self.test_images,self.test_labels),
-          callbacks=[tensorboardCallback])
+          callbacks=[tensorboardCallback,learningRateCallback])
+
         #save model
         self.model.save('saveModel/',save_format='tf')
         

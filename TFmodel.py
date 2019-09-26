@@ -19,7 +19,7 @@ class modelTF :
             ]
         )
     
-    def fitModel(self, tensorboardCallback, numEpochs=5):
+    def fitModel(self, learningRateCallback,tensorboardCallback, numEpochs=5):
         #build the model
         self.model.compile(optimizer='adam',
         loss='sparse_categorical_crossentropy',
@@ -28,7 +28,7 @@ class modelTF :
         #self.model.fit(self.train_images,self.train_labels, epochs=numEpochs)
         #adding tensorboard call back
         self.model.fit(self.train_images, self.train_labels, epochs=numEpochs, validation_data=(self.test_images,self.test_labels),
-          callbacks=[tensorboardCallback])
+          callbacks=[tensorboardCallback,learningRateCallback])
 
         
 
