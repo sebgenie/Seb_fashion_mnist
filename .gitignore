@@ -27,4 +27,9 @@
 *.sqlite
 
 #remove directory
+<<<<<<< HEAD
 **/tf
+=======
+**/tf
+**/logs
+>>>>>>> aeff5b3eeb0768b1ef93a48d2bf9e20084bc8479
