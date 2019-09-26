@@ -4,10 +4,7 @@ import tensorflow as tf
 from tensorflow import keras
 from TFmodel import modelTF 
 from TFConvModel import modelConvTF
-<<<<<<< HEAD
-=======
 import datetime
->>>>>>> aeff5b3eeb0768b1ef93a48d2bf9e20084bc8479
 #Helper
 import numpy as np 
 import matplotlib.pyplot as plt
@@ -16,18 +13,11 @@ import matplotlib.pyplot as plt
 class learnFromData:
 
 
-<<<<<<< HEAD
-    def __init__(self,convFlag = True):
-
-        # if you want to you convolution
-        self.convFlag = convFlag 
-=======
     def __init__(self,log_dir,convFlag = True):
 
         # if you want to you convolution
         self.convFlag = convFlag
         self.log_dir = log_dir
->>>>>>> aeff5b3eeb0768b1ef93a48d2bf9e20084bc8479
         
     def learnFromDataTF(self):
 
@@ -70,16 +60,11 @@ class learnFromData:
             model = modelConvTF(train_images,train_labels,test_images,test_labels)
         else:
             model = modelTF(train_images,train_labels,test_images,test_labels)
-<<<<<<< HEAD
-        #training is done here
-        model.fitModel(numEpochs=7)
-=======
         #set the tensorboard callback
         self.log_dir = self.log_dir+"/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
         tensorboardCallback = tf.keras.callbacks.TensorBoard(log_dir=self.log_dir, histogram_freq=1)
         # training is done here
         model.fitModel(tensorboardCallback,numEpochs=7)
->>>>>>> aeff5b3eeb0768b1ef93a48d2bf9e20084bc8479
 
         (test_loss, test_acc) = model.evaluateModel()
         predictions = model.preditionOfModel()
