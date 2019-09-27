@@ -17,3 +17,8 @@ in main.py, set production variable to True
 
 run:
 python3 main.py
+
+Contact:
+For any request, do not hesitate to contact me at sebgenie@gmail.com
+or follow me on:
+https://www.researchgate.net/profile/Sebastien_Mambou
