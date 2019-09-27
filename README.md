@@ -2,7 +2,6 @@
 Train your CNN model to recognize element of fashion mnist dataset
 
 # how to use ?
-
 make sure to have all the dependencies below:
 - tensorflow==2.0.0-rc1
 - matplotlib
