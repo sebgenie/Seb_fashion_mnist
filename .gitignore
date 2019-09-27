@@ -29,6 +29,10 @@ git
 #remove directory
 <<<<<<< HEAD
 **/tf
+**tf
+**.idea
+**__pycache__
+**/__pycache__
 =======
 **/tf
 **/logs
